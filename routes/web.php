@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
-Route::get('/test', function () {
-    Category::where('id', 1)->delete();
+Route::get('admin/index', function () {
+    return view('admin.index');
 });
