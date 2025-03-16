@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -28,6 +29,17 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [ProductsController::class, 'store'])->name('admin.products.store');
         Route::delete('delete/{id}',[ProductsController::class , 'delete'])->name('admin.products.delete');
         Route::put('update/{id}' , [ProductsController::class , 'update'])->name('admin.products.update');
+    });
+
+    Route::prefix('users')->group(function () {
+
+        Route::get('', [UsersController::class, 'all'])->name('admin.users.all');
+        Route::get('add', [UsersController::class, 'add'])->name('admin.users.add');
+        Route::get('edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
+        Route::post('store', [UsersController::class, 'store'])->name('admin.users.store');
+        Route::delete('delete/{id}', [UsersController::class, 'delete'])->name('admin.users.delete');
+        Route::put('update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+        
     });
 
     // Route::get('/', function () {
