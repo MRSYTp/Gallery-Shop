@@ -18,8 +18,16 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('products')->group(function () {
+
+
         Route::get('add', [ProductsController::class, 'add'])->name('admin.products.add');
+        Route::get('', [ProductsController::class, 'all'])->name('admin.products.all');
+        Route::get('edit/{id}' , [ProductsController::class , 'edit'])->name('admin.products.edit');
+        Route::get('download/demo/{id}', [ProductsController::class , 'downloadDemo'])->name('admin.products.downloadDemo');
+        Route::get('download/source/{id}', [ProductsController::class , 'downloadSource'])->name('admin.products.downloadSource');
         Route::post('store', [ProductsController::class, 'store'])->name('admin.products.store');
+        Route::delete('delete/{id}',[ProductsController::class , 'delete'])->name('admin.products.delete');
+        Route::put('update/{id}' , [ProductsController::class , 'update'])->name('admin.products.update');
     });
 
     // Route::get('/', function () {
