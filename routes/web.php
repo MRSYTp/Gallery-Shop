@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\OrdersController;
+use App\Http\Controllers\admin\PaymentsController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,11 @@ Route::prefix('admin')->group(function () {
     Route::prefix('orders')->group(function () {
 
         Route::get('', [OrdersController::class, 'all'])->name('admin.orders.all');
+    });
+
+    Route::prefix('payments')->group(function () {
+
+        Route::get('', [PaymentsController::class, 'all'])->name('admin.payments.all');
     });
 
     // Route::get('/', function () {

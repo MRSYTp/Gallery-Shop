@@ -12,4 +12,9 @@ class Order extends Model
     {
         return $this->belongsTo(User::class , 'id');
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class , 'order_id');
+    }
 }
