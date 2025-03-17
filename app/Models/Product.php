@@ -15,6 +15,6 @@ class Product extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class , 'owner_id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }
