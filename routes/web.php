@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\CategoriesController;
+use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,12 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{id}', [UsersController::class, 'delete'])->name('admin.users.delete');
         Route::put('update/{id}', [UsersController::class, 'update'])->name('admin.users.update');
         
+    });
+
+
+    Route::prefix('orders')->group(function () {
+
+        Route::get('', [OrdersController::class, 'all'])->name('admin.orders.all');
     });
 
     // Route::get('/', function () {
