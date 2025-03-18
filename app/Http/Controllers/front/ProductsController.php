@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {   
         $products = Product::all();
+
+        if($request->has('search')){
+            $products = Product::where('title' , 'like' , '%'.$request->search.'%')->get();
+        }
+        
         $categories = Category::all();
 
         return view('frontend.index' , compact('products' , 'categories'));
