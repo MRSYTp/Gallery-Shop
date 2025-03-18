@@ -9,26 +9,11 @@
 					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5 how-active1" data-filter="*">
 						همه دسته بندی ها
 					</button>
-
-					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".women">
-						تراکت
+                    @foreach($categories as $category)
+					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".category-{{$category->id}}">
+						{{$category->title}}
 					</button>
-
-					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".men">
-						کارت ویزیت
-					</button>
-
-					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".bag">
-						بنر
-					</button>
-
-					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".shoes">
-						ست اداری
-					</button>
-
-					<button class="mtext-106 cl6 hov1 bor3 trans-04 m-l-32 m-tb-5" data-filter=".watches">
-						وکتور
-					</button>
+                    @endforeach
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -156,7 +141,7 @@
 
 			<div class="row isotope-grid">
 				@foreach($products as $product)
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item category-{{$product->category_id}}">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
@@ -169,7 +154,7 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="{{route('frontend.product.show' , $product->id)}}" class="mtext-106 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<a href="{{ route('frontend.product.show' , $product->id)}}" class="mtext-106 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									{{$product->title}}
 								</a>
 
