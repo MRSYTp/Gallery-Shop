@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\PaymentsController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\front\ProductsController as FrontProductsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
@@ -54,9 +55,12 @@ Route::prefix('admin')->group(function () {
 
         Route::get('', [PaymentsController::class, 'all'])->name('admin.payments.all');
     });
+});
 
-    // Route::get('/', function () {
-    //     return view('admin.index');
-    // });
+
+Route::prefix('')->group(function () {
+
+    Route::get('', [FrontProductsController::class, 'index'])->name('frontend.index');
+    Route::get('product/{id}', [FrontProductsController::class, 'show'])->name('frontend.product.show');
 });
 
