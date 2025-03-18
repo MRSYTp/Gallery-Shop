@@ -74,26 +74,26 @@
 
                             <ul>
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                    <a href="{{route('frontend.index')}}" class="filter-link stext-106 trans-04 {{request()->get('price') == null ? 'filter-link-active' : ''}}">
                                         همه
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="{{route('frontend.index')}}?price=10-100" class="filter-link stext-106 trans-04 {{request()->get('price') == '10-100' ? 'filter-link-active' : ''}}">
                                         ۱۰ الی ۱۰۰ هزار تومان
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
-                                        ۱۰۱ الی ۲۰۰ هزار تومان
+                                    <a href="{{route('frontend.index')}}?price=100-200" class="filter-link stext-106 trans-04 {{request()->get('price') == '100-200' ? 'filter-link-active' : ''}}">
+                                        ۱۰۰ الی ۲۰۰ هزار تومان
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
-                                        ۲۰۱ الی ۳۰۰ هزار تومان
+                                    <a href="{{route('frontend.index')}}?price=200-300" class="filter-link stext-106 trans-04 {{request()->get('price') == '200-300' ? 'filter-link-active' : ''}}">
+                                        ۲۰۰ الی ۳۰۰ هزار تومان
                                     </a>
                                 </li>
                             </ul>
@@ -106,31 +106,31 @@
 
                             <ul>
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="{{route('frontend.index')}}" class="filter-link stext-106 trans-04 {{request()->get('orderby') == null ? 'filter-link-active' : ''}}">
                                         پیش فرض
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="{{route('frontend.index')}}?orderby=popular" class="filter-link stext-106 trans-04 {{request()->get('orderby') == 'popular' ? 'filter-link-active' : ''}}">
                                         محبوبیت
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                    <a href="{{route('frontend.index')}}?orderby=newest" class="filter-link stext-106 trans-04 {{request()->get('orderby') == 'newest' ? 'filter-link-active' : ''}}">
                                         جدیدترین
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="{{route('frontend.index')}}?orderby=priceAsc" class="filter-link stext-106 trans-04 {{request()->get('orderby') == 'priceAsc' ? 'filter-link-active' : ''}}">
                                         قیمت:‌ کم به زیاد
                                     </a>
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="{{route('frontend.index')}}?orderby=priceDesc" class="filter-link stext-106 trans-04 {{request()->get('orderby') == 'priceDesc' ? 'filter-link-active' : ''}}">
                                         قیمت:‌زیاد به کم
                                     </a>
                                 </li>
