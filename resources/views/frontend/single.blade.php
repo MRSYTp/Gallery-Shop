@@ -25,6 +25,7 @@
     <!-- Product Detail -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
         <div class="container">
+            @include('errors.message')
             <div class="row">
                 <div class="col-md-6 col-lg-7 p-b-30">
                     <div class="p-l-25 p-l-0-lg">
@@ -65,11 +66,14 @@
                         <div class="p-t-33">
 
                             <div class="flex-w flex-r-m p-b-10">
-                                <div class="flex-w flex-m respon6-next">
-                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                        افزودن به سبد خرید
-                                    </button>
-                                </div>
+                                <form action="{{route('frontend.basket.add', $product->id)}}" method="post">
+                                    @csrf
+                                    <div class="flex-w flex-m respon6-next">
+                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                            افزودن به سبد خرید
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
