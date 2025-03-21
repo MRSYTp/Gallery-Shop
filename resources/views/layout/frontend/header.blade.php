@@ -193,7 +193,7 @@
                         </a>
 
                         <span class="header-cart-item-info">
-							{{$value['price']}} هزار تومان
+							{{number_format($value['price'])}} تومان
 						</span>
                     </div>
                 </li>
@@ -202,11 +202,11 @@
 
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">
-                    جمع کل : {{array_sum(array_column(json_decode(Cookie::get('basket'), true) ?? [], 'price'))}} هزار تومان
+                    جمع کل : {{number_format(App\Providers\BasketServiceProvider::totalPrice())}} تومان
                 </div>
 
                 <div class="header-cart-buttons flex-w w-full">
-                    <a href="checkout.php" class="flex-c-m stext-101 cl0 size-107 w-100 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-l-8 m-b-10">
+                    <a href="{{route('frontend.checkout')}}" class="flex-c-m stext-101 cl0 size-107 w-100 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-l-8 m-b-10">
                         مشاهده سبد خرید و پرداخت
                     </a>
                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PaymentsController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\front\BasketController;
+use App\Http\Controllers\front\CheckoutController;
 use App\Http\Controllers\front\ProductsController as FrontProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,7 @@ Route::prefix('')->group(function () {
 
     Route::get('', [FrontProductsController::class, 'index'])->name('frontend.index');
     Route::get('product/{id}', [FrontProductsController::class, 'show'])->name('frontend.product.show');
+    Route::get('checkout' , [CheckoutController::class , 'index'])->name('frontend.checkout');
     Route::post('basket/add/{id}', [BasketController::class, 'add'])->name('frontend.basket.add');
     Route::delete('basket/remove/{id}', [BasketController::class, 'remove'])->name('frontend.basket.remove');
 });
