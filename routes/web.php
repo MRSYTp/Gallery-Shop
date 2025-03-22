@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\front\BasketController;
 use App\Http\Controllers\front\CheckoutController;
-use App\Http\Controllers\front\PaymentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\front\ProductsController as FrontProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,5 +72,5 @@ Route::prefix('')->group(function () {
 
 Route::prefix('payment')->group(function(){
     
-    Route::get('pay', [PaymentController::class, 'pay'])->name('frontend.payment.pay');
+    Route::post('pay', [PaymentController::class, 'pay'])->name('frontend.payment.pay');
 });

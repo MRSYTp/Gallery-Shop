@@ -21,6 +21,7 @@
     <!-- Shoping Cart -->
     <div class="bg0 p-t-75 p-b-85">
         <div class="container">
+            @include('errors.message')
             <div class="row">
                 <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                     <div>
@@ -64,13 +65,14 @@
                             اطلاعات کاربری
                         </h4>
 
-                        <form action="" method="post">
+                        <form action="{{route('frontend.payment.pay')}}" method="post">
+                            @csrf
                             <div class="flex-w flex-t">
                                 <div class="w-full">
                                     <div class="p-t-15">
 
                                         <div class="bor8 bg0 m-b-12">
-                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="family" placeholder="نام و نام خانوادگی">
+                                            <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="name" placeholder="نام و نام خانوادگی">
                                         </div>
                                         <div class="bor8 bg0 m-b-12">
                                             <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="mobile" placeholder="موبایل">
