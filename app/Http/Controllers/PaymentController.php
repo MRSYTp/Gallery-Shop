@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
 use App\Models\Order;
+use App\Models\Payment;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Services\Payment\PaymentService;
@@ -32,7 +34,9 @@ class PaymentController extends Controller
 
             $orders = json_decode(Cookie::get('basket'), true);
 
-            $totalAmount = array_sum(array_column($orders, 'price'));
+            $products = Product::findMany(array_keys($orders));
+            
+            $totalAmount = $products->sum('price');
 
             $refId = Str::random(20);
 
@@ -43,12 +47,31 @@ class PaymentController extends Controller
                 'status' => 'unpaid',
             ]);
 
-            
+            $orderItems = $products->map(function ($product) {
+                $currentProduct = $product->only('id', 'price');
+                $currentProduct['product_id'] = $currentProduct['id'];
+                unset($currentProduct['id']);
+                return $currentProduct;
+            });
+
+            $createdOrder->orderItems()->createMany($orderItems->toArray());
+
+
+            $refId = rand(10000000, 99999999);
+
+
+            $createdPayment = Payment::create([
+                'order_id' => $createdOrder->id,
+                'gateway' => 'idpay',
+                'res_id' => $refId,
+                'ref_id' => $refId,
+                'status' => 'unpaid',
+            ]);
             DB::commit();
-            dd($createdOrder);
+            return back()->with('success', 'پرداخت با موفقیت انجام شد');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', $e->getMessage());
+            return back()->with('error', $e->getMessage());
         }
 
         // $paymentService = new PaymentService(PaymentService::IDPAY, new IDPayRequest());
