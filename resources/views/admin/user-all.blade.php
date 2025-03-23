@@ -59,7 +59,7 @@
                                   <td>{{ $user->email }}</td>
                                   <td>{{ $user->mobile }}</td>
                                   <td>{{ $user->role == 'admin' ? 'مدیر' : 'کاربر عادی' }}</td>
-                                  <td>{{ $user->created_at->format('Y/m/d') }}</td>
+                                  <td>{{(new Hekmatinasser\Verta\Verta($user->created_at))->format('Y/m/d')}}</td>
                                   <td>
                                       <a href="{{ route('admin.users.edit', $user->id)}}" class="btn btn-default btn-icons"><i class="fa fa-edit"></i></a>
                                       <form action="{{ route('admin.users.delete', $user->id)}}" method="POST" style="display: inline-block;">

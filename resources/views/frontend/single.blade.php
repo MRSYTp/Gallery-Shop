@@ -126,7 +126,7 @@
 											</span>
 
                                             <span class="mtext-106 cl6 size-206">
-												{{$product->created_at->format('d F Y')}}
+												{{(new Hekmatinasser\Verta\Verta($product->created_at))->format('Y/m/d')}}
 											</span>
                                         </li>
                                     </ul>

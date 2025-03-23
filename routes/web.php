@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\CategoriesController;
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\PaymentsController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\front\ProductsController as FrontProductsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
+
+    Route::get('index', [HomeController::class, 'index'])->name('admin.index');
 
     Route::prefix('categories')->group(function () {
 

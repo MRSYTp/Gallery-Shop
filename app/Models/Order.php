@@ -10,12 +10,12 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class , 'id');
+        return $this->belongsTo(User::class);
     }
 
-    public function payments()
+    public function payment()
     {
-        return $this->hasMany(Payment::class , 'order_id');
+        return $this->hasOne(Payment::class);
     }
 
     public function orderItems()

@@ -53,16 +53,24 @@
                               @foreach ($payments as $payment)
                               <tr>
                                   <td>{{$payment->order_id}}</td>
-                                  <td>{{$payment->user->name}}</td>
-                                  <td>{{$payment->amount}} تومان</td>
+                                  <td>{{$payment->order->user->name}}</td>
+                                  <td>{{number_format($payment->order->amount)}} تومان</td>
                                   <td>{{$payment->ref_id}}</td>
                                   <td>
-                                      ملت
+                                      @if ($payment->gateway == 'idpay')
+                                      <span>ایدی پی</span>
+                                      @else
+                                      <span>ملت</span>
+                                      @endif
                                   </td>
                                   <td>
+                                      @if ($payment->status == 'paid')
                                       <span class="badge bg-success">موفق</span>
+                                      @else
+                                      <span class="badge bg-danger">ناموفق</span>
+                                      @endif
                                   </td>
-                                  <td>{{$payment->created_at->format('Y/m/d')}}</td>
+                                  <td>{{(new Hekmatinasser\Verta\Verta($payment->created_at))->format('Y/m/d')}}</td>
                               </tr>
                               @endforeach
                               </tbody></table>

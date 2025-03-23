@@ -25,7 +25,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>150</h3>
+                          <h3>{{$orderCount}}</h3>
 
                           <p>سفارشات جدید</p>
                       </div>
@@ -40,7 +40,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>53</h3>
+                          <h3>{{$categoryCount}}</h3>
 
                           <p>دسته بندی</p>
                       </div>
@@ -55,7 +55,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>44</h3>
+                          <h3>{{$productCount}}</h3>
 
                           <p>محصول</p>
                       </div>
@@ -70,7 +70,7 @@
                   <!-- small box -->
                   <div class="small-box bg-primary">
                       <div class="inner">
-                          <h3>65</h3>
+                          <h3>{{$userCount}}</h3>
 
                           <p>کاربر</p>
                       </div>
