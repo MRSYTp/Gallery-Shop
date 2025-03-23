@@ -71,6 +71,7 @@ Route::prefix('')->group(function () {
 });
 
 Route::prefix('payment')->group(function(){
-    
+    Route::get('s-callback', [PaymentController::class, 'successCallback'])->name('frontend.payment.success-callback');
+    Route::get('e-callback', [PaymentController::class, 'errorCallback'])->name('frontend.payment.error-callback');
     Route::post('pay', [PaymentController::class, 'pay'])->name('frontend.payment.pay');
 });
