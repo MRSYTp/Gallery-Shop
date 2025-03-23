@@ -64,7 +64,7 @@
                                   </td>
                                   <td>{{(new Hekmatinasser\Verta\Verta($order->created_at))->format('Y/m/d')}}</td>
                                   <td>
-                                      <button class="btn btn-default btn-icons" data-toggle="modal" data-target="#order_items" title="مشاهده سبد خرید"><i class="fa fa-shopping-cart"></i></button>
+                                      <button class="btn btn-default btn-icons order-details" data-order-id="{{$order->id}}" title="مشاهده سبد خرید"><i class="fa fa-shopping-cart"></i></button>
                                   </td>
                               </tr>
                               @endforeach
@@ -101,68 +101,20 @@
           </div>
           <div class="modal-body p-0">
               <div class="table table-striped table-valign-middle mb-0">
-                  <table class="table table-hover mb-0">
+                  <table class="table table-hover mb-0" id="order_items_table">
+                    <thead>
+                      <tr>
+                        <th>عنوان</th>
+                        <th>دسته بندی</th>
+                        <th>لینک دمو</th>
+                        <th>لینک دانلود</th>
+                        <th>قیمت</th>
+                      </tr>
+                    </thead>
                       <tbody>
-                      <tr>
-                          <th>عنوان</th>
-                          <th>دسته بندی</th>
-                          <th>لینک دمو</th>
-                          <th>لینک دانلود</th>
-                          <th>قیمت</th>
-                      </tr>
-                      <tr>
-                          <td>
-                              <img src="dist/img/user6-128x128.jpg" class="product_img">
-                              کارت ویزیت مشاور املاک</td>
-                          <td>کارت ویزیت</td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>۳۹۰۰۰ تومان</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <img src="dist/img/user6-128x128.jpg" class="product_img">
-                              کارت ویزیت مشاور املاک</td>
-                          <td>کارت ویزیت</td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>۳۹۰۰۰ تومان</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <img src="dist/img/user6-128x128.jpg" class="product_img">
-                              کارت ویزیت مشاور املاک</td>
-                          <td>کارت ویزیت</td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>۳۹۰۰۰ تومان</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <img src="dist/img/user6-128x128.jpg" class="product_img">
-                              کارت ویزیت مشاور املاک</td>
-                          <td>کارت ویزیت</td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>
-                              <a href="#" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>
-                          </td>
-                          <td>۳۹۰۰۰ تومان</td>
-                      </tr>
-                      </tbody></table>
+
+                      </tbody>
+                    </table>
               </div>
           </div>
           <div class="modal-footer">

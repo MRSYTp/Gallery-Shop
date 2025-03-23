@@ -67,7 +67,7 @@
                                   <td>{{$product->user->name}}</td>
                                   <td>{!!substr($product->description , 0 , 20)!!}...</td>
                                   <td>
-                                      <a href={{route('admin.products.downloadDemo' , $product->id) }}" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
+                                      <a href="{{route('admin.products.downloadDemo' , $product->id) }}" class="btn btn-default btn-icons" title="لینک دمو"><i class="fa fa-link"></i></a>
                                   </td>
                                   <td>
                                       <a href="{{route('admin.products.downloadSource' , $product->id) }}" class="btn btn-default btn-icons" title="لینک دانلود"><i class="fa fa-link"></i></a>

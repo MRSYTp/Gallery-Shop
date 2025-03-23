@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\PaymentsController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\front\BasketController;
 use App\Http\Controllers\front\CheckoutController;
 use App\Http\Controllers\PaymentController;
@@ -55,6 +56,7 @@ Route::prefix('admin')->group(function () {
     Route::prefix('orders')->group(function () {
 
         Route::get('', [OrdersController::class, 'all'])->name('admin.orders.all');
+        Route::post('order-details' , [AjaxController::class , 'orderDetails'])->name('admin.orders.orderDetails');
     });
 
     Route::prefix('payments')->group(function () {
