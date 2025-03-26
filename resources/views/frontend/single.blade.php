@@ -55,7 +55,7 @@
                         </h4>
 
                         <span class="mtext-106 cl2">
-							{{number_format($product->price)}} هزار تومان
+							{{number_format($product->price)}} تومان
 						</span>
 
                         <p class="stext-102 cl3 p-t-23">
@@ -174,7 +174,7 @@
                                     </a>
 
                                     <span class="stext-105 cl3">
-										{{number_format($relatedProduct->price)}} هزار تومان
+										{{number_format($relatedProduct->price)}} تومان
 								</span>
                                 </div>
                             </div>

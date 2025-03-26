@@ -73,6 +73,7 @@ Route::prefix('')->group(function () {
     Route::get('checkout' , [CheckoutController::class , 'index'])->name('frontend.checkout');
     Route::post('basket/add/{id}', [BasketController::class, 'add'])->name('frontend.basket.add');
     Route::delete('basket/remove/{id}', [BasketController::class, 'remove'])->name('frontend.basket.remove');
+    Route::post('product-details' , [AjaxController::class , 'productDetails'])->name('frontend.products.productDetails');
 });
 
 Route::prefix('payment')->group(function(){

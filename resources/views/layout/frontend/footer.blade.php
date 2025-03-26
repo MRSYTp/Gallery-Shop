@@ -106,6 +106,53 @@
 
 <!--===============================================================================================-->
 <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('.show-product-details').click(function() {
+        var productid = $(this).data('productid');
+        console.log('درخواست برای product_id:', productid);
+
+        $.ajax({
+            url: "{{ route('frontend.products.productDetails') }}",
+            type: 'POST',
+            data: {
+                product_id: productid,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                
+                if (response && typeof response === 'object') {
+
+                    if (response.demo_url) {
+                        let handler = $('.details-handler');
+                        handler.find('img').attr('src', '/storage/' + response.demo_url);
+                        handler.find('a').attr('href', '/storage/' + response.demo_url);
+                    }
+
+
+                    $('.title').text(response.title || 'بدون عنوان');
+
+                    $('.amount').text(new Intl.NumberFormat('fa-IR').format(response.price || 0) + ' تومان');
+
+                    $('.desc').html(response.description || 'توضیحاتی برای این محصول ثبت نشده است.');
+
+                    if (response.basket_url) {
+                        $('.add-basket form').attr('action', response.basket_url);
+                    }
+                } else {
+                    console.log('پاسخ نامعتبر است:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('خطا:', error);
+            }
+        });
+    });
+
+    
+});
+</script>
 <!--===============================================================================================-->
 <script src="/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
