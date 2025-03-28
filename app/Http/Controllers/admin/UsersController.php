@@ -10,9 +10,13 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function all()
+    public function all(Request $request)
     {
         $users = User::paginate(10);
+
+        if ($request->search) {
+            $users = User::where('name' , 'like' , '%' . $request->search . '%')->paginate(10);
+        }
         return view('admin.user-all', compact('users'));
     }
 

@@ -30,9 +30,14 @@ class CategoriesController extends Controller
         }
     }
 
-    public function all()
-    {
+    public function all(Request $request)
+    {   
+
         $categories = Category::paginate(10);
+
+        if ($request->search) {
+            $categories = Category::where('title' , 'like' , '%' . $request->search . '%')->paginate(10);
+        }
         return view('admin.category-all', compact('categories'));
     }
 

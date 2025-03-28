@@ -57,11 +57,14 @@ class ProductsController extends Controller
 
     }
 
-    public function all()
+    public function all(Request $request)
     {   
 
         $products = Product::paginate(10);
         
+        if ($request->search) {
+            $products = Product::where('title' , 'like' , '%' . $request->search . '%')->paginate(10);
+        }
         return view('admin.product-all', compact('products'));
     }
 

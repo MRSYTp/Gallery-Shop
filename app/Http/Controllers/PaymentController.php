@@ -21,18 +21,18 @@ class PaymentController extends Controller
 {
     public function pay(PaymentRequest $request)
     {   
-        $validatedData = $request->validated();
-
-        $user = User::firstOrCreate([
-            'email' => $validatedData['email'],
-        ],[
-            'name' => $validatedData['name'],
-            'mobile' => $validatedData['mobile'],
-        ]);
-
+        $validatedData = $request->validated();        
 
         DB::beginTransaction();
         try {
+
+            
+            $user = User::firstOrCreate([
+                'email' => $validatedData['email'],
+            ],[
+                'name' => $validatedData['name'],
+                'mobile' => $validatedData['mobile'],
+            ]);
 
             $orders = json_decode(Cookie::get('basket'), true);
 
