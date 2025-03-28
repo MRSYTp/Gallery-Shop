@@ -41,8 +41,14 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+        $ProductID = $product->id;
 
         $relatedProducts = Product::where('category_id' , $product->category_id)->take(4)->get();
+
+        $relatedProducts = $relatedProducts->filter(function($product) use ($ProductID){
+            return $product->id !== $ProductID;
+        });
+
 
         return view('frontend.single' , compact('product' , 'relatedProducts'));
     }
