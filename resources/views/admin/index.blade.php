@@ -94,7 +94,7 @@
                       <div class="card-body">
                           <div class="d-flex">
                               <p class="d-flex flex-column">
-                                  <span class="text-bold text-lg">تومان 18,230.00</span>
+                                  <span class="text-bold text-lg">تومان {{ number_format($totalSellPrice)}}</span>
                                   <span>فروش در طول زمان</span>
                               </p>
                               <p class="mr-auto d-flex flex-column text-right">

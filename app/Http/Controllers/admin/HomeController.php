@@ -7,16 +7,34 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Services\SalesService;
 
 class HomeController extends Controller
 {
+    protected $salesService;
+
+    public function __construct(SalesService $salesService)
+    {
+        $this->salesService = $salesService;
+    }
+
     public function index()
-    {   
+    {
         $categoryCount = Category::count();
         $productCount = Product::count();
         $userCount = User::count();
         $orderCount = Order::count();
-        return view('admin.index',compact('categoryCount','productCount','userCount','orderCount'));
+        $totalSellPrice = Order::sum('amount');
+        $salesData = $this->salesService->getMonthlySalesData();
+
+
+        return view('admin.index', compact(
+            'categoryCount',
+            'productCount',
+            'userCount',
+            'orderCount',
+            'totalSellPrice',
+            'salesData'
+        ));
     }
 }
