@@ -21,6 +21,7 @@ class SalesService
 
         $salesData = Order::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, SUM(amount) as total")
             ->whereBetween('created_at', [$currentMonth->copy()->subMonths(6), $currentMonth->endOfMonth()])
+            ->where('status' , 'paid')
             ->groupBy('month')
             ->orderBy('month')
             ->get()
@@ -34,6 +35,7 @@ class SalesService
                 $currentMonth->copy()->subMonths(6)->subYear(),
                 $currentMonth->copy()->endOfMonth()->subYear()
             ])
+            ->where('status' , 'paid')
             ->groupBy('month')
             ->orderBy('month')
             ->get()
@@ -59,5 +61,31 @@ class SalesService
             'currentYear' => $currentYearSales,
             'previousYear' => $previousYearSales,
         ];
+    }
+
+    public function getMonthPercentage()
+    {
+
+        $currentMonth = Carbon::now()->startOfMonth();
+
+        $monthlyTotalPrice = Order::whereMonth('created_at' , $currentMonth->month)
+        ->whereYear('created_at' , Carbon::now()->year)
+        ->where('status' , 'paid')
+        ->sum('amount');
+
+        $lastMonthTotalPrice = Order::whereMonth('created_at' ,  $currentMonth->subMonth()->month)
+        ->whereYear('created_at' , Carbon::now()->subMonth()->year)
+        ->where('status' , 'paid')
+        ->sum('amount');
+
+
+        $growthPercentage = 0;
+
+        if ($lastMonthTotalPrice > 0) {
+            $growthPercentage = (($monthlyTotalPrice - $lastMonthTotalPrice) / $lastMonthTotalPrice) * 100;
+            $growthPercentage = round($growthPercentage, 1);
+        }
+
+        return $growthPercentage;
     }
 }

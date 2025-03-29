@@ -98,8 +98,8 @@
                                   <span>فروش در طول زمان</span>
                               </p>
                               <p class="mr-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fa fa-arrow-up"></i> 33.1%
+                    <span class="text-{{(0 >= $monthPercentage) ? 'danger' : 'success'}}">
+                      <i class="fa fa-arrow-{{(0 >= $monthPercentage) ? 'down' : 'up'}}"></i> {{abs($monthPercentage)}}%
                     </span>
                                   <span class="text-muted">از ماه گذشته</span>
                               </p>

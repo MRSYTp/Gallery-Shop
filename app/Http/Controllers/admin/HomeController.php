@@ -24,8 +24,9 @@ class HomeController extends Controller
         $productCount = Product::count();
         $userCount = User::count();
         $orderCount = Order::count();
-        $totalSellPrice = Order::sum('amount');
+        $totalSellPrice = Order::where('status' , 'paid')->sum('amount');
         $salesData = $this->salesService->getMonthlySalesData();
+        $monthPercentage = $this->salesService->getMonthPercentage();
 
 
         return view('admin.index', compact(
@@ -34,7 +35,8 @@ class HomeController extends Controller
             'userCount',
             'orderCount',
             'totalSellPrice',
-            'salesData'
+            'salesData',
+            'monthPercentage'
         ));
     }
 }
