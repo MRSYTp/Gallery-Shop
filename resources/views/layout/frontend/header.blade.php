@@ -34,6 +34,8 @@
     <link rel="stylesheet" type="text/css" href="/css/util.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!--===============================================================================================-->
+        <!-- bootstrap rtl -->
+        <link rel="stylesheet" href="/admin/dist/css/bootstrap-rtl.min.css">
 </head>
 <body class="animsition">
 

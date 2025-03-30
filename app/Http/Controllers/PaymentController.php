@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\VerifyPaymentRequest;
 use App\Mail\sendOrderedImages;
 use App\Models\Order;
 use App\Models\Payment;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
+
     public function pay(PaymentRequest $request)
     {   
         $validatedData = $request->validated();        
@@ -67,7 +69,7 @@ class PaymentController extends Controller
             $refId = rand(10000000, 99999999);
 
 
-            $createdPayment = Payment::create([
+            Payment::create([
                 'order_id' => $createdOrder->id,
                 'gateway' => 'idpay',
                 'res_id' => $refId,
@@ -75,36 +77,13 @@ class PaymentController extends Controller
                 'status' => 'unpaid',
             ]);
             DB::commit();
-            
-        // Gateway Payment
 
-          //paying...
-
-        //after payment
-
-            DB::beginTransaction();
-            Cookie::queue(Cookie::forget('basket'));
-
-            $createdOrder->update([
-                'status' => 'paid',
-            ]);
-
-            $createdPayment->update([
-                'status' => 'paid',
-            ]);
+            session(['totalPrice' => $totalAmount]);
+            session(['ref_code' => $refCode]);
+            session(['user_email' => $validatedData['email']]);
+            return redirect()->route('frontend.payment.gateway');
 
 
-            $orderItems = $createdOrder->orderItems;
-
-            $productsSourceImg = $orderItems->map(function ($item) {
-                return storage_path('app/private_storage/'.$item->product->source_url);
-            });
-
-            
-            Mail::to($validatedData['email'])->send(new sendOrderedImages($productsSourceImg->toArray()));
-
-            DB::commit();
-            return redirect()->route('frontend.payment.success-callback');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', $e->getMessage());
@@ -112,14 +91,52 @@ class PaymentController extends Controller
 
     }
 
-    public function successCallback()
-    {
-
-        return view('frontend.s-callback');
+    public function gateway()
+    {   
+        $totalPrice = session('totalPrice' , null);
+        if (($totalPrice === null)) {
+            return back()->with('error', 'مشکلی در رفتن به درگاه پرداخت پیش امده دوباره تلاش کنید.');
+        }
+        return view('frontend.sample-gateway',compact('totalPrice'));
     }
 
-    public function errorCallback()
-    {
-        return view('frontend.e-callback');
+    public function callback(VerifyPaymentRequest $request)
+    {   
+
+        $validatedData = $request->validated();
+        $totalPrice = session('totalPrice');
+        $refCode = session('ref_code');
+        $email = session('user_email');
+        if ($totalPrice != $validatedData['amount']) {
+            return view('frontend.e-callback');
+        }
+
+        DB::beginTransaction();
+        try {
+
+            Cookie::queue(Cookie::forget('basket'));
+    
+            $currentPayment = Payment::where('ref_id' , $refCode)->first();
+
+            $currentPayment->update(['status' => 'paid']);
+            $currentPayment->order()->update(['status' => 'paid']);
+
+            $productsSourceImg = $currentPayment->order->orderItems->map(function ($item) {
+                return storage_path('app/private_storage/'.$item->product->source_url);
+            });
+    
+            Mail::to($email)->send(new sendOrderedImages($productsSourceImg->toArray()));
+    
+            DB::commit();
+            
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+
+        }
+
+
+        return view('frontend.s-callback');
     }
 }
