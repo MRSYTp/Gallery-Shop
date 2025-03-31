@@ -24,17 +24,18 @@
     <link rel="stylesheet" href="/admin/dist/css/custom-style.css">
 </head>
 <body class="hold-transition login-page">
-    @extends('errors.message')
+    
 <div class="login-box" style="    width: 400px;">
     <div class="login-title">
         درگاه پرداخت شبیه سازی
+        
     </div>
     <!-- /.login-logo -->
     
     <div class="card">
         
         <div class="card-body login-card-body">
-            
+            @include('errors.message')
             <form action="{{route('frontend.payment.callback')}}" method="post">
                 @csrf
                 <input name="amount" type="text" class="form-control mb-2" placeholder="قیمت (تومان)">

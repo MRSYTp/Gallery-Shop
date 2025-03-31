@@ -95,7 +95,7 @@ class PaymentController extends Controller
     {   
         $totalPrice = session('totalPrice' , null);
         if (($totalPrice === null)) {
-            return back()->with('error', 'مشکلی در رفتن به درگاه پرداخت پیش امده دوباره تلاش کنید.');
+            return redirect()->route('frontend.checkout')->with('error', 'مشکلی در رفتن به درگاه پرداخت پیش امده دوباره تلاش کنید.');
         }
         return view('frontend.sample-gateway',compact('totalPrice'));
     }
@@ -108,6 +108,9 @@ class PaymentController extends Controller
         $refCode = session('ref_code');
         $email = session('user_email');
         if ($totalPrice != $validatedData['amount']) {
+            session()->forget('totalPrice');
+            session()->forget('ref_code');
+            session()->forget('user_email');
             return view('frontend.e-callback');
         }
 
@@ -126,17 +129,19 @@ class PaymentController extends Controller
             });
     
             Mail::to($email)->send(new sendOrderedImages($productsSourceImg->toArray()));
-    
+
             DB::commit();
-            
         } catch (\Exception $e) {
 
             DB::rollBack();
+
             return back()->with('error', $e->getMessage());
 
         }
 
-
+        session()->forget('totalPrice');
+        session()->forget('ref_code');
+        session()->forget('user_email');
         return view('frontend.s-callback');
     }
 }
