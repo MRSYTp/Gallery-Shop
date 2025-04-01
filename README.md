@@ -1,66 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🖼️ Gallery Shop
 
-## About Laravel
+**Gallery Shop** is an advanced online marketplace for buying and selling images and graphics developed with Laravel. This system provides extensive management features for admins and an optimized user experience for customers, offering a complete and efficient platform.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+With this platform, users can easily search and filter for the images they want, add them to their shopping cart, and after purchase, receive the relevant files via email. On the other hand, site administrators can fully manage products, categories, users, and sales, and monitor sales growth through an analytical dashboard.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎛️ **Admin Panel**
 
-## Learning Laravel
+- 📦 **Product Management** (Add, Edit, Delete)
+- 👤 **User Management** (Add, Edit, Delete)
+- 📊 **Professional Analytical Dashboard** (Displays the number of sales, users, products, and categories)
+- 📈 **Monthly and Yearly Growth Charts** for sales performance analysis
+- 💳 **Transaction Management** (Details of successful and unsuccessful payments)
+- 📑 **Access to the full list of sales** with detailed information
+- 🔍 **Advanced Search** across all management tables
+- ✉️ **Automatic email sending** with purchased files to users
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛍️ **User Features**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- ⚡ **Quick and easy product viewing**
+- 🔍 **Filter products by category**
+- 🆕 **Sort by latest, cheapest, and most expensive**
+- 💰 **Set a price range to display related products**
+- 🖼️ **View similar products on the product page**
+- 🛒 **Add and remove products from the shopping cart**
+- 🍪 **Save shopping cart in cookies without the need to log in**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🔧 Technologies Used
 
-## Laravel Sponsors
+- **Laravel** - A powerful PHP framework for backend development
+- **MySQL** - Database for storing user and product information
+- **Verta** - A package for converting dates to Persian for better statistical data presentation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Installation and Setup
 
-### Premium Partners
+### 1️⃣ Clone the repository
+ `git clone https://github.com/yourusername/gallery-shop.git cd gallery-shop `
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 2️⃣ Set up the database and email configurations
 
-## Contributing
+Edit the `.env` file and set up your database and email settings:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+ `DB_DATABASE=your_database_name DB_USERNAME=your_database_user DB_PASSWORD=your_database_password MAIL_MAILER=smtp MAIL_HOST=smtp.your-email.com MAIL_PORT=587 MAIL_USERNAME=your_email@example.com MAIL_PASSWORD=your_email_password MAIL_ENCRYPTION=tls MAIL_FROM_ADDRESS=your_email@example.com `
 
-## Code of Conduct
+### 3️⃣ Run Laravel commands
+ `composer install php artisan migrate --seed php artisan key:generate `
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4️⃣ Start the local server
+ `php artisan serve ` 
+Then, the project will be accessible at `http://127.0.0.1:8000`.
 
-## Security Vulnerabilities
+## 📞 Contact Information
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **LinkedIn:** [Mohamadreza Salehi](https://www.linkedin.com/in/mohamadreza-salehi)
+- **Email:** mr.salehi.dev@gmail.com
+- **Website:** [iammohamadrezasale](https://iammohamadrezasale.com)
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🎨 Gallery Shop is a professional digital marketplace for art and graphics enthusiasts. With this platform, you will experience a smooth, fast, and efficient process for buying and selling digital images. 🚀
