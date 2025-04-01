@@ -54,8 +54,8 @@ Then, the project will be accessible at `http://127.0.0.1:8000`.
 
 ## 📞 Contact Information
 
-- **LinkedIn:** [Mohamadreza Salehi](https://www.linkedin.com/in/mohamadreza-salehi)
+- **LinkedIn:** [Mohamadreza Salehi](https://www.linkedin.com/in/mohamadreza-salehi-5681a2339/)
 - **Email:** mr.salehi.dev@gmail.com
-- **Website:** [iammohamadrezasale](https://iammohamadrezasale.com)
+- **Website:** [iammohamadrezasale](https://www.iammohamadrezasalehi.ir/)
 
 ### 🎨 Gallery Shop is a professional digital marketplace for art and graphics enthusiasts. With this platform, you will experience a smooth, fast, and efficient process for buying and selling digital images. 🚀
